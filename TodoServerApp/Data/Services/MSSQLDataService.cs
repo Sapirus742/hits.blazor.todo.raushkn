@@ -12,7 +12,7 @@ namespace TodoServerApp.Data.Services
 
         public async Task SaveAsync(TaskItem taskItem)
         {
-            if(taskItem.Id == 0)
+            if (taskItem.Id == 0)
             {
                 taskItem.CreatedDate = DateTime.Now;
                 await context.TaskItems.AddAsync(taskItem);
@@ -21,6 +21,7 @@ namespace TodoServerApp.Data.Services
             {
                 context.TaskItems.Update(taskItem);
             }
+
             await context.SaveChangesAsync();
         }
 

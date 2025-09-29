@@ -1,12 +1,12 @@
 ﻿@page "/tasks/add"
-@page "/tasks/{id:int}"
+@page "/tasks/{Id:int}"
 
 @inject IDataService data
 @inject NavigationManager navigate
 
 @if (TaskItem != null)
 {
-    <EditForm Model="TaskItem" FormName="Taskform" OnValidSubmit="ValidSubmit">
+    <EditForm Model="TaskItem" FormName="TaskForm" OnValidSubmit="ValidSubmit">
         <DataAnnotationsValidator />
         <ValidationSummary />
 
@@ -27,13 +27,15 @@
             <InputDate @bind-Value="TaskItem.FinishDate" class="form-control" />
             <ValidationMessage For="() => TaskItem.FinishDate" />
         </div>
-        <dev class="btn-group">
+        <div class="btn-group">
             <button class="btn btn-primary m-2" type="submit">Сохранить</button>
             <a class="btn btn-primary m-2" href="/">Отмена</a>
-        </dev>
+        </div>
     </EditForm>
 }
-@code {
+
+@code
+{
     [Parameter]
     public int Id { get; set; }
 
@@ -62,5 +64,4 @@
         await data.SaveAsync(TaskItem!);
         navigate.NavigateTo("/");
     }
-    
 }

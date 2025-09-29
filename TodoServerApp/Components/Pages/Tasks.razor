@@ -1,8 +1,8 @@
 ﻿@page "/"
 @rendermode InteractiveServer
 @inject IDataService data
-@inject NavigationManager navigate
 @attribute [Authorize]
+@inject NavigationManager navigate
 
 <PageTitle>Задачи</PageTitle>
 
@@ -12,15 +12,13 @@
     @if (tasks == null)
     {
         <tr>
-            <td colspan="5">Loading...</td>
+            <td colspan="5">Loaging ...</td>
         </tr>
     }
     else
     {
         <div class="btn-group m-2">
-            <button class="btn btn-primary" @onclick="AddTask">
-                Новая задача
-            </button>
+            <button class="btn btn-primary" @onclick="AddTask">Новая задача</button>
         </div>
         <div class="card-group">
             @foreach (var task in tasks)
@@ -43,7 +41,8 @@
     }
 </div>
 
-@code {
+@code
+{
     IEnumerable<TaskItem>? tasks;
 
     protected override async Task OnInitializedAsync()
@@ -55,8 +54,8 @@
     void AddTask()
     {
         navigate.NavigateTo("tasks/add");
-    }
 
+    }
     async Task DeleteTask(int id)
     {
         await data.DeleteAsync(id);
